@@ -17,7 +17,7 @@ p {
 @media only screen and (-webkit-min-device-pixel-ratio: 1.3),
   only screen and (-o-min-device-pixel-ratio: 13/10),
   only screen and (min-resolution: 120dpi) {
-  body {
+  .content {
     flex-direction: column;
   }
   .title,
@@ -26,7 +26,7 @@ p {
   }
   .divider {
     transform: rotate(90deg);
-    animation: 700ms ease-in-out 0s 1 fadeDown;
+    /* animation: 700ms ease-in-out 0s 1 fadeDown; */
   }
 }
 
@@ -137,10 +137,6 @@ a {
   animation: 1500ms ease-in-out 0s 1 fadeIn;
   text-decoration: none;
   /*   border-bottom: 1px solid hsla(211, 40%, 25%, 0.4); */
-}
-
-a:hover {
-  /* background-color: hsla(211, 40%, 100%, 0.8); */
 }
 
 a i {
