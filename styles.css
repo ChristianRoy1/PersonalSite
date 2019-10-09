@@ -20,10 +20,7 @@ p {
   .content {
     flex-direction: column;
   }
-  .title,
-  .subtitle {
-    transform: scale(2);
-  }
+
   .divider {
     transform: rotate(90deg);
     margin: 40px 0;
