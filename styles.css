@@ -1,29 +1,38 @@
-
 /* RESET */
-html,body,div,span, h1, h2, p {
-  margin:0;
-  padding:0;
-  border:0;
-/*   outline: 1px solid red; */
+html,
+body,
+div,
+span,
+h1,
+h2,
+p {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  /*   outline: 1px solid red; */
 }
 
 /* MEDIA QUERY */
 
-@media	only screen and (-webkit-min-device-pixel-ratio: 1.3),
-	only screen and (-o-min-device-pixel-ratio: 13/10),
-	only screen and (min-resolution: 120dpi)
-	{
-		body {flex-direction: column;}
-		.title, .subtitle {transform: scale(2);}
-		.divider {
-			transform: rotate(90deg);
-			animation: 700ms ease-in-out 0s 1 fadeDown;
-		}
-	}
+@media only screen and (-webkit-min-device-pixel-ratio: 1.3),
+  only screen and (-o-min-device-pixel-ratio: 13/10),
+  only screen and (min-resolution: 120dpi) {
+  body {
+    flex-direction: column;
+  }
+  .title,
+  .subtitle {
+    transform: scale(2);
+  }
+  .divider {
+    transform: rotate(90deg);
+    animation: 700ms ease-in-out 0s 1 fadeDown;
+  }
+}
 
 /* STYLES */
 html {
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   color: hsl(211, 40%, 25%);
 }
 
@@ -33,7 +42,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-/*   justify-content: center; */
+  /*   justify-content: center; */
   background-color: hsl(211, 33%, 95%);
   scroll-behavior: smooth;
   cursor: default;
@@ -117,17 +126,32 @@ a {
   transform: translateX(-10%);
   padding: 10px 20px;
   margin: 40px 0;
-/*   background-color: hsla(211, 40%, 100%, 0.8); */
-  background-color: hsla(211, 40%, 100%, 0.8);
+  /*   background-color: hsla(211, 40%, 100%, 0.8); */
+  /* background-color: hsla(211, 40%, 100%, 0.8); */
   color: hsla(211, 40%, 25%, 0.6);
-  border: 1px solid hsla(211, 100%, 25%, 0.0);
+  border: 1px solid hsla(211, 100%, 25%, 0);
   border-radius: 50px;
   outline: none;
   cursor: pointer;
   transition: all 150ms ease-in-out;
   animation: 1500ms ease-in-out 0s 1 fadeIn;
   text-decoration: none;
-/*   border-bottom: 1px solid hsla(211, 40%, 25%, 0.4); */
+  /*   border-bottom: 1px solid hsla(211, 40%, 25%, 0.4); */
+}
+
+a:hover {
+  /* background-color: hsla(211, 40%, 100%, 0.8); */
+}
+
+a i {
+  color: hsla(211, 40%, 25%, 0.3);
+  margin-right: 10px;
+  transition: all 150ms ease-in-out;
+}
+
+a:hover i {
+  transform: translateX(-6px);
+  color: hsla(211, 40%, 25%, 0.44);
 }
 
 button:hover {
@@ -144,7 +168,7 @@ button:active {
     opacity: 0;
   }
   100% {
-    opacity: .8;
+    opacity: 0.8;
   }
 }
 @keyframes fadeDown {
