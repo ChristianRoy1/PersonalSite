@@ -52,6 +52,7 @@ body {
 
 .content {
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   flex-grow: 1;
@@ -126,7 +127,7 @@ h2 {
 a {
   transform: translateX(-10%);
   padding: 10px 20px;
-  margin: 40px 0;
+  margin: 40px 0 10px 0;
   /*   background-color: hsla(211, 40%, 100%, 0.8); */
   /* background-color: hsla(211, 40%, 100%, 0.8); */
   color: hsla(211, 40%, 25%, 0.6);
