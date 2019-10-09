@@ -26,6 +26,7 @@ p {
   }
   .divider {
     transform: rotate(90deg);
+    margin: 40px 0;
     /* animation: 700ms ease-in-out 0s 1 fadeDown; */
   }
 }
