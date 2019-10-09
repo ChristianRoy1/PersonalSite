@@ -112,7 +112,7 @@ h2 {
   transform: translateX(20px);
 }
 
-button {
+a {
   transform: translateX(-10%);
   padding: 10px 20px;
   margin: 40px 0;
@@ -125,6 +125,7 @@ button {
   cursor: pointer;
   transition: all 150ms ease-in-out;
   animation: 1500ms ease-in-out 0s 1 fadeIn;
+  text-decoration: none;
 /*   border-bottom: 1px solid hsla(211, 40%, 25%, 0.4); */
 }
 
