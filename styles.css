@@ -57,7 +57,6 @@ html {
 .page1 {
   height: 100vh;
   width: 100%;
-  /* background-color: yellow; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -95,7 +94,6 @@ h3 {
   background-image: url("Christian-Roy-Seattle.png");
   background-position: center right;
   background-size: cover;
-  /* background-size: auto 100%; */
   background-color: #c6deeb;
   transform: translateX(40px);
   box-shadow: 0px 20px 40px hsla(207, 46%, 27%, 0.2);
@@ -118,14 +116,6 @@ h3 {
 .card-bio:hover {
   box-shadow: 0px 20px 40px hsla(0, 0%, 0%, 0.15);
 }
-
-/* i {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background-color: #ddddeb;
-  padding: auto;
-} */
 
 .btn-light {
   padding: 14px 16px;
@@ -189,34 +179,6 @@ i {
 }
 
 /* ------------------------------------------------------------------ */
-/* Mobile */
-
-@media only screen and (max-width: 600px) {
-  .page1 {
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-  }
-
-  .card-picture {
-    background-position: center;
-    transform: translateX(0px);
-    width: 100%;
-    border-radius: 0;
-  }
-
-  .card-picture:hover {
-    transform: translateX(0px);
-    filter: grayscale(20%);
-  }
-
-  .card-bio {
-    transform: translateX(0px);
-    transform: translateY(-40px);
-  }
-}
-
-/* ------------------------------------------------------------------ */
 /* Animations */
 
 body {
@@ -228,13 +190,11 @@ body {
 .card-picture {
   animation: pushDown ease 800ms;
   animation-iteration-count: 1;
-  /* animation-fill-mode: forwards; */
 }
 
 .card-bio {
   animation: pushUp ease 800ms;
   animation-iteration-count: 1;
-  /* animation-fill-mode: forwards; */
 }
 
 h1 {
@@ -291,11 +251,52 @@ h2 {
   }
 }
 
+@keyframes pushUpTrue {
+  0% {
+    transform: translate(0px, 100px);
+  }
+  100% {
+    transform: translate(0px, -40px);
+  }
+}
+
 @keyframes pushLeft {
   0% {
     transform: translateX(50px);
   }
   100% {
     transform: translateX(0px);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Mobile */
+
+@media only screen and (max-width: 600px) {
+  .page1 {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .card-picture {
+    background-position: center;
+    transform: translateX(0px);
+    width: 100%;
+    border-radius: 0;
+    animation: fadeInAnimation ease 600ms;
+    animation-iteration-count: 1;
+  }
+
+  .card-picture:hover {
+    transform: translateX(0px);
+  }
+
+  .card-bio {
+    transform: translateX(0px);
+    transform: translateY(-40px);
+    animation: pushUpTrue ease 600ms;
+    animation-iteration-count: 1;
+    height: auto;
   }
 }
