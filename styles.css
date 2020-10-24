@@ -1,226 +1,301 @@
-/* RESET */
-html,
+/* ------------------------------------------------------------------ */
+/* CSS Reset  */
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
 body,
-div,
-span,
 h1,
 h2,
-p {
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul {
   margin: 0;
   padding: 0;
-  border: 0;
-  /*   outline: 1px solid red; */
+  font-weight: normal;
 }
 
-/* MEDIA QUERY */
-
-@media only screen and (max-width: 500px) {
-  .content {
-    flex-direction: column;
-  }
-
-  .divider {
-    transform: rotate(90deg);
-    margin: 40px 0;
-    /* animation: 700ms ease-in-out 0s 1 fadeDown; */
-  }
+ol,
+ul {
+  list-style: none;
 }
 
-/* STYLES */
-html {
-  font-family: "Lato", sans-serif;
-  color: hsl(211, 40%, 25%);
-}
-
-body {
-  height: 100vh;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  /*   justify-content: center; */
-  background-color: hsl(211, 33%, 95%);
-  scroll-behavior: smooth;
-  cursor: default;
-  user-select: none;
-}
-
-.content {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  flex-grow: 1;
-  flex-wrap: wrap;
-}
-
-.title {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: center;
-  transition: all 150ms ease-in-out;
-}
-
-h1 {
-  animation: 300ms ease-in-out 0s 1 fadeInRight;
-}
-
-h2 {
-  color: hsla(211, 40%, 25%, 0.6);
-  font-weight: 300;
-  animation: 500ms ease-in-out 0s 1 fadeInRight;
-}
-
-.subtitle {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  transition: all 150ms ease-in-out;
-}
-
-.subtitle i {
-  font-size: 20px;
-  background-color: white;
-  border: 2px solid #1089ff;
-  padding: 8px;
-  border-radius: 50px;
-  color: #1089ff;
-  transition: all 100ms;
-  animation: 600ms ease-in-out 0s 1 fadeDown;
-}
-
-.subtitle p {
-  margin-left: 20px;
-  color: hsla(211, 40%, 25%, 0.8);
-  animation: 600ms ease-in-out 0s 1 fadeInLeft;
-}
-
-.divider {
-  width: 3px;
-  height: 20%;
-  min-height: 40px;
-  border-radius: 50px;
-  background-color: hsla(211, 20%, 50%, 0.1);
-  margin: 0px 40px;
-  animation: 700ms ease-in-out 0s 1 fadeDivider;
-  transition: all 200ms ease-in-out;
-}
-
-.title:hover {
-  transform: translateX(-20px);
-}
-
-.title:hover ~ .divider {
-  transform: scaleY(1.8);
-}
-
-.subtitle:hover {
-  transform: translateX(20px);
+img {
+  max-width: 100%;
+  height: auto;
 }
 
 a {
-  transform: translateX(-10%);
-  padding: 10px 20px;
-  margin: 40px 0 10px 0;
-  /*   background-color: hsla(211, 40%, 100%, 0.8); */
-  /* background-color: hsla(211, 40%, 100%, 0.8); */
-  color: hsla(211, 40%, 25%, 0.6);
-  border: 1px solid hsla(211, 100%, 25%, 0);
-  border-radius: 50px;
-  outline: none;
-  cursor: pointer;
-  transition: all 150ms ease-in-out;
-  animation: 1500ms ease-in-out 0s 1 fadeIn;
   text-decoration: none;
-  /*   border-bottom: 1px solid hsla(211, 40%, 25%, 0.4); */
 }
 
-a i {
-  color: hsla(211, 40%, 25%, 0.3);
-  margin-right: 10px;
-  transition: all 150ms ease-in-out;
+/* ------------------------------------------------------------------ */
+/* CSS General */
+
+* {
+  transition: all 300ms ease-in-out;
 }
 
-a:hover i {
-  transform: translateX(-6px);
-  color: hsla(211, 40%, 25%, 0.44);
+html {
+  background-color: #f5f6fa;
+  font-family: Calibri, sans-serif;
+  color: #869aa5;
+  font-size: 12pt;
 }
 
-button:hover {
-  background-color: hsla(211, 40%, 100%, 0.9);
+.page1 {
+  height: 100vh;
+  width: 100%;
+  /* background-color: yellow; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-button:active {
-  transform: translateX(-20px);
+h1 {
+  color: #5f7b8b;
+  font-weight: bold;
+  font-size: 20pt;
+}
+h2 {
+  color: #a4b6c1;
+  font-size: 14pt;
+  margin-bottom: 16px;
+}
+h3 {
+  color: #5f7b8b;
+  font-weight: bold;
+  font-size: 12pt;
+  margin: 20px 0 10px 0;
 }
 
-/* Animation */
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
+.card {
+  background-color: white;
+  border-radius: 15px;
+  height: 500px;
+  width: 350px;
+  padding: 35px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-picture {
+  z-index: 0;
+  background-image: url("Christian-Roy-Seattle.png");
+  background-position: center right;
+  background-size: cover;
+  /* background-size: auto 100%; */
+  background-color: #c6deeb;
+  transform: translateX(40px);
+  box-shadow: 0px 20px 40px hsla(207, 46%, 27%, 0.2);
+}
+
+.card-picture:hover {
+  transform: translate(30px, 0px);
+}
+
+.card-bio {
+  z-index: 1;
+  transform: translateX(-40px);
+  box-shadow: 0px 20px 40px hsla(0, 0%, 0%, 0.1);
+}
+
+.card-bio p {
+  text-align: justify;
+}
+
+.card-bio:hover {
+  box-shadow: 0px 20px 40px hsla(0, 0%, 0%, 0.15);
+}
+
+/* i {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: #ddddeb;
+  padding: auto;
+} */
+
+.btn-light {
+  padding: 14px 16px;
+  margin: 10px 0 0 0;
+  border: none;
+  background-color: #f2f3f8;
+  border-radius: 10px;
+  width: 100%;
+  color: #a4b6c1;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: all 100ms ease-in-out;
+}
+
+.btn-light:active {
+  filter: brightness(80%);
+}
+
+.btn-light:focus {
+  outline: none;
+}
+
+i {
+  font-size: 18px;
+}
+
+#linkedin i {
+  color: #0172b1;
+}
+
+#linkedin:hover i {
+  color: white;
+}
+
+#linkedin:hover {
+  background-color: #0172b1;
+  color: white;
+}
+
+#dribbble i {
+  color: #eb4c89;
+}
+
+#dribbble:hover i {
+  color: white;
+}
+
+#dribbble:hover {
+  background-color: #eb4c89;
+  color: white;
+}
+
+.btn-light p {
+  padding-left: 15px;
+  font-weight: bold;
+}
+
+.social {
+  margin-top: auto;
+}
+
+/* ------------------------------------------------------------------ */
+/* Mobile */
+
+@media only screen and (max-width: 600px) {
+  .page1 {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
   }
-  100% {
-    opacity: 0.8;
+
+  .card-picture {
+    background-position: center;
+    transform: translateX(0px);
+    width: 100%;
+    border-radius: 0;
   }
-}
-@keyframes fadeDown {
-  0% {
+
+  .card-picture:hover {
+    transform: translateX(0px);
+    filter: grayscale(20%);
+  }
+
+  .card-bio {
+    transform: translateX(0px);
     transform: translateY(-40px);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Animations */
+
+body {
+  animation: fadeInAnimation ease 600ms;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.card-picture {
+  animation: pushDown ease 800ms;
+  animation-iteration-count: 1;
+  /* animation-fill-mode: forwards; */
+}
+
+.card-bio {
+  animation: pushUp ease 800ms;
+  animation-iteration-count: 1;
+  /* animation-fill-mode: forwards; */
+}
+
+h1 {
+  animation: pushLeft ease 600ms;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+h2 {
+  animation: pushLeft ease 800ms;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.details h3 {
+  animation: pushLeft ease 1000ms;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.details p {
+  animation: pushLeft ease 1400ms;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeInAnimation {
+  0% {
     opacity: 0;
-    color: white;
   }
   50% {
-    color: white;
-  }
-  80% {
-    opacity: 1;
+    opacity: 0;
   }
   100% {
-    transform: translateY(0px);
-    color: #1089ff;
+    opacity: 1;
   }
 }
 
-@keyframes fadeInRight {
+@keyframes pushDown {
   0% {
-    transform: translatex(-40px);
-    opacity: 0;
-  }
-  80% {
-    opacity: 1;
+    transform: translate(40px, -100px);
   }
   100% {
-    transform: translateY(0px);
+    transform: translate(40px, 0px);
   }
 }
 
-@keyframes fadeInLeft {
+@keyframes pushUp {
   0% {
-    transform: translatex(40px);
-    opacity: 0;
-  }
-  80% {
-    opacity: 1;
+    transform: translate(-40px, 100px);
   }
   100% {
-    transform: translateY(0px);
+    transform: translate(-40px, 0px);
   }
 }
 
-@keyframes fadeDivider {
+@keyframes pushLeft {
   0% {
-    transform: scaleY(0);
-    opacity: 0;
-  }
-  30% {
-    transform: scaleY(0);
-  }
-  80% {
-    opacity: 1;
+    transform: translateX(50px);
   }
   100% {
-    transform: scaleY(1);
+    transform: translateX(0px);
   }
 }
