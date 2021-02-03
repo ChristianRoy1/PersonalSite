@@ -152,7 +152,7 @@ i {
   width: 100%;
   height: 50px;
   margin-top: -50px;
-  background-color: hsla(0, 0%, 100%, 0.4);
+  background-color: hsla(0, 0%, 100%, 0.5);
   border: 1px solid hsla(0, 0%, 0%, 0.05);
 }
 
@@ -162,7 +162,7 @@ i {
 }
 
 .footer a:hover {
-  color: hsla(0, 0%, 0%, 0.5);
+  /* color: hsla(0, 0%, 0%, 0.5); */
   text-decoration: underline;
 }
 
@@ -199,6 +199,7 @@ i {
 
 .social {
   margin-top: auto;
+  display: block;
 }
 
 /* ------------------------------------------------------------------ */
@@ -320,7 +321,7 @@ h2 {
     transform: translateY(-40px);
     animation: pushUpTrue ease 600ms;
     animation-iteration-count: 1;
-    height: auto;
+    height: 100%;
     margin-bottom: 100px;
   }
 
