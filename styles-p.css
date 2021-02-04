@@ -1,0 +1,225 @@
+/* ------------------------------------------------------------------ */
+/* CSS Reset  */
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  text-decoration: none;
+}
+
+::selection {
+  background: hsla(0, 0%, 90%, 1); /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+  background: hsla(0, 0%, 90%, 1); /* Gecko Browsers */
+}
+
+/* ------------------------------------------------------------------ */
+/* CSS General */
+
+* {
+  transition: all 200ms ease-in-out;
+}
+
+html {
+  background-color: #f5f6fa;
+  font-family: Calibri, sans-serif;
+  color: #869aa5;
+  font-size: 12pt;
+}
+
+body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  color: #5f7b8b;
+  font-weight: bold;
+  font-size: 16pt;
+}
+h2 {
+  color: #a4b6c1;
+  font-size: 12pt;
+  /* font-weight: bold; */
+}
+h3 {
+  color: #5f7b8b;
+  font-weight: bold;
+  font-size: 12pt;
+  margin: 20px 0 10px 0;
+}
+
+.profile-card {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  min-width: 300px;
+  height: 80px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
+  margin-top: 40px;
+  box-shadow: 0px 20px 60px hsla(0, 10%, 0%, 0.1);
+}
+
+.profile-card:hover {
+  box-shadow: 0px 20px 60px hsla(0, 10%, 0%, 0.2);
+}
+
+.profile-image {
+  height: 120px;
+  width: 120px;
+  opacity: 0.9;
+  transform: translateX(-30px);
+  border-radius: 50%;
+  background-color: hsla(250, 30%, 30%, 0.1);
+  /* margin-right: 16px; */
+  background-image: url("Christian-Roy-Seattle.png");
+  background-size: cover;
+}
+
+.profile-card-details {
+}
+
+#h2-default {
+}
+
+#h2-hover {
+  position: absolute;
+  opacity: 0;
+}
+
+.profile-card:hover #h2-default {
+  transform: translateY(-10px);
+  opacity: 0;
+}
+
+.profile-card:hover #h2-hover {
+  transform: translateY(-16px);
+  opacity: 1;
+}
+
+.profile-card:hover .profile-image {
+  transform: translateX(-30px) scale(1.1);
+  opacity: 1;
+  /* height: 100px; */
+  /* width: 100px; */
+  /* transform: translateX(-10px); */
+}
+
+/* ------------------------------------------------------------------ */
+/* ------------------------------------------------------------------ */
+/* ------------------------------------------------------------------ */
+/* Main Section */
+
+.section-projects {
+  max-width: 800px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: space-around;
+  /* outline: solid 1px red; */
+  margin-top: 40px;
+}
+
+.project-card {
+  min-width: 300px;
+  max-width: 500px;
+  background-color: white;
+  height: 300px;
+}
+
+.project-card button {
+  position: absolute;
+  opacity: 0;
+}
+
+/* ------------------------------------------------------------------ */
+/* ------------------------------------------------------------------ */
+/* ------------------------------------------------------------------ */
+/* Animation */
+
+.profile-card-details {
+  animation: pushLeft ease 500ms;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.profile-card {
+  animation: fadeUpIn ease 500ms;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes pushLeft {
+  0% {
+    transform: translateX(20px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+
+@keyframes fadeUpIn {
+  0% {
+    transform: translate(0px, 20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(0px, 0px);
+    opacity: 1;
+  }
+}
+
+.profile-card:active .profile-image {
+  animation: popOut ease 200ms;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.profile-card:active {
+  transform: scale(0.9);
+}
+
+@keyframes popOut {
+  0% {
+    transform: translateX(-30px) scale(1.1);
+  }
+  100% {
+    transform: translateX(-30px) scale(1.3);
+  }
+}
