@@ -66,6 +66,14 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  overflow-y: scroll;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }
 
 h1 {
@@ -85,16 +93,36 @@ h3 {
   margin: 20px 0 10px 0;
 }
 
+.title h3 {
+  color: #5f7b8b;
+  font-weight: bold;
+  font-size: 36pt;
+  margin: 20px 0 40px 0;
+}
+
+/* ------------------------------------------------------------------ */
+/* Profile Card */
+/* ------------------------------------------------------------------ */
+
 .profile-card {
+  opacity: 0.5;
   display: flex;
+  position: fixed;
   align-items: center;
   overflow: hidden;
   min-width: 300px;
   height: 80px;
+  /* left: 25%; */
   background-color: rgb(255, 255, 255);
   border-radius: 20px;
-  margin-top: 40px;
+  /* margin: 40px auto auto 0; */
   box-shadow: 0px 20px 60px hsla(0, 10%, 0%, 0.1);
+  z-index: 15;
+
+  /* top: 50%; */
+  left: 50%;
+  margin-top: 40px; /* Negative half of height. */
+  margin-left: -150px; /* Negative half of width. */
 }
 
 .profile-card:hover {
@@ -111,12 +139,6 @@ h3 {
   /* margin-right: 16px; */
   background-image: url("Christian-Roy-Seattle.png");
   background-size: cover;
-}
-
-.profile-card-details {
-}
-
-#h2-default {
 }
 
 #h2-hover {
@@ -143,35 +165,254 @@ h3 {
 }
 
 /* ------------------------------------------------------------------ */
-/* ------------------------------------------------------------------ */
-/* ------------------------------------------------------------------ */
 /* Main Section */
+/* ------------------------------------------------------------------ */
+
+.title {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  height: 280px;
+  /* background-color: red; */
+}
 
 .section-projects {
-  max-width: 800px;
+  max-width: 900px;
   display: flex;
   flex-wrap: wrap;
   align-items: space-around;
+  justify-content: center;
   /* outline: solid 1px red; */
-  margin-top: 40px;
+  /* margin-top: 40px; */
 }
 
 .project-card {
-  min-width: 300px;
-  max-width: 500px;
+  flex: 1 0 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 250px;
+  max-width: 450px;
   background-color: white;
-  height: 300px;
+  box-shadow: 0 1px 2px rgba(15, 7, 63, 0.04), 0 2px 4px rgba(15, 7, 63, 0.04),
+    0 4px 8px rgba(15, 7, 63, 0.04), 0 8px 16px rgba(15, 7, 63, 0.04),
+    0 16px 32px rgba(15, 7, 63, 0.04), 0 32px 64px rgba(15, 7, 63, 0.04);
+  overflow: hidden;
+  border-radius: 12px;
+  margin: 20px;
+  transition: all 200ms ease-in-out;
+  filter: brightness(100%);
+  user-select: none;
+  cursor: pointer;
+  transition: all 300ms ease-in-out;
+
+  background-size: cover;
+  background-position: center;
 }
 
-.project-card button {
+.project-card:hover {
+  /* transform: translateY(-5px); */
+}
+
+.project-card:active {
+  transform: scale(0.95);
+}
+
+.project-card .slide-over {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(60px);
+  align-self: flex-end;
+  height: 60px;
+  width: 100%;
+  background-color: white;
+  padding: 15px 60px;
+  font-size: 16px;
+  font-weight: 700;
+  box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.2);
+  border: none;
+  border-radius: 10px 10px 0 0;
+  color: #43535c;
+  cursor: pointer;
+}
+
+.project-card:hover .slide-over {
+  opacity: 0.9;
+  transform: translateY(0px);
+}
+
+.project-card:hover .cover-white {
+  opacity: 0.5;
+}
+
+.project-card img {
   position: absolute;
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+}
+
+.cover-white {
+  opacity: 0;
+  background-color: white;
+  position: absolute;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: 5;
+}
+
+#card-website {
+  background-color: #b8c6db;
+  background-image: linear-gradient(315deg, #b8c6db 0%, #f5f7fa 74%);
+}
+
+#card-recipe {
+  background-color: #f39f86;
+  background-image: linear-gradient(315deg, #f39f86 0%, #f9d976 74%);
+}
+
+#card-gameknight {
+  background-color: #6e72fc;
+  background-image: linear-gradient(315deg, #6e72fc 0%, #ad1deb 74%);
+}
+
+#card-something {
+  background-color: #f1dfd1;
+  background-image: linear-gradient(315deg, #f1dfd1 0%, #f6f0ea 74%);
+}
+
+/* ------------------------------------------------------------------ */
+/* Modals */
+/* ------------------------------------------------------------------ */
+
+.mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(25, 36, 46, 0.9);
+  z-index: 15;
+  visibility: hidden;
+
+  opacity: 0;
+
+  transition: 0.7s;
+}
+
+.modal {
+  position: fixed;
+  margin-top: 10vh;
+  max-width: 800px;
+  height: 90vh;
+  background: white;
+  border-radius: 50px 50px 0 0;
+  z-index: 20;
+  /* overflow: hidden; */
+  overflow-y: scroll;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+
+  visibility: hidden;
+  opacity: 1;
+
+  transition: 300ms ease-out;
+
+  transform: translateY(90vh);
+}
+
+/* Hide scroll bar but keep functionality in Chrome, Safari and Opera */
+.modal::-webkit-scrollbar {
+  display: none;
+}
+
+.modal-description {
+  padding: 80px 80px 0 80px;
+}
+
+.modal-title {
+  display: flex;
+  /* outline: solid red 1px; */
+  margin-bottom: 60px;
+}
+
+.modal-title div {
+  margin-right: 40px;
+}
+
+.modal-title h2 {
+  color: #43535c;
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 80%;
+}
+
+.modal-title h3 {
+  opacity: 0.6;
+  max-width: 80%;
+}
+
+.modal-title a {
+  margin-left: auto;
+  align-self: center;
+}
+
+.modal-title button {
+  height: 40px;
+  min-width: 140px;
+  background-color: #6e72fc;
+  outline: none;
+  border: none;
+  padding: 8px 32px;
+  border-radius: 100px;
+  color: white;
+  font-weight: 700;
+  font-size: 12px;
+  transition: all 100ms;
+}
+
+.modal-title button:hover {
+  filter: brightness(0.9);
+  cursor: pointer;
+}
+
+.modal-title button:active {
+  transform: scale(0.9);
+}
+
+.modal-description h4 {
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.modal-description p {
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.modal-description p:last-of-type {
+  margin-bottom: 80px;
+}
+
+.modal-website {
+  visibility: hidden;
   opacity: 0;
 }
 
-/* ------------------------------------------------------------------ */
-/* ------------------------------------------------------------------ */
+.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modalUp {
+  transform: translateY(0);
+}
+
 /* ------------------------------------------------------------------ */
 /* Animation */
+/* ------------------------------------------------------------------ */
 
 .profile-card-details {
   animation: pushLeft ease 500ms;
@@ -179,7 +420,9 @@ h3 {
   animation-fill-mode: forwards;
 }
 
-.profile-card {
+.profile-card,
+.title,
+.section-projects {
   animation: fadeUpIn ease 500ms;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
