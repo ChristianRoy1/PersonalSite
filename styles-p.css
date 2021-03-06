@@ -299,7 +299,7 @@ h3 {
 
   opacity: 0;
 
-  transition: 0.7s;
+  transition: 200ms;
 }
 
 .modal {
