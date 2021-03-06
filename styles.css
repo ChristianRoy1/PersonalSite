@@ -100,6 +100,7 @@ h3 {
   padding: 35px;
   display: flex;
   flex-direction: column;
+  margin-bottom: 40px;
 }
 
 .card-picture {
@@ -113,7 +114,7 @@ h3 {
 }
 
 .card-picture:hover {
-  transform: translate(30px, 0px);
+  transform: translateX(30px);
 }
 
 .card-bio {
@@ -320,7 +321,7 @@ h2 {
 }
 
 /* ------------------------------------------------------------------ */
-/* Mobile */
+/* Mobile Screens */
 
 @media only screen and (max-width: 600px) {
   .page1 {
@@ -328,6 +329,10 @@ h2 {
     align-items: center;
     justify-content: flex-start;
     height: 90%;
+  }
+
+  .card {
+    margin-bottom: 0px;
   }
 
   .card-picture {
@@ -367,6 +372,7 @@ h2 {
 @media only screen and (max-height: 600px) {
   .page1 {
     height: 100%;
+    padding-top: 50px;
   }
 
   .footer {
