@@ -89,14 +89,14 @@ h2 {
 h3 {
   color: #5f7b8b;
   font-weight: bold;
-  font-size: 12pt;
+  font-size: 18px;
   margin: 20px 0 10px 0;
 }
 
 .title h3 {
   color: #5f7b8b;
   font-weight: bold;
-  font-size: 36pt;
+  font-size: 22pt;
   margin: 20px 0 40px 0;
 }
 
@@ -105,7 +105,7 @@ h3 {
 /* ------------------------------------------------------------------ */
 
 .profile-card {
-  opacity: 0.5;
+  /* opacity: 0.5; */
   display: flex;
   position: fixed;
   align-items: center;
@@ -498,4 +498,9 @@ h3 {
     font-size: 32px;
     line-height: 100%;
   }
+
+  .profile-card {
+    /* transform: scale(.2); */
+    transform: translateY(-40px);
+    /* height: 60px; */
 }
