@@ -160,29 +160,40 @@ i {
 
 .footer {
   display: flex;
-  flex-shrink: 0;
+  flex-shrink: 1;
   flex-direction: row;
   flex-wrap: wrap;
+  width: 100%;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 50px;
-  margin-top: -50px;
+  height: 60px;
+  margin-top: -60px;
+}
+
+.footer .container {
+  /* outline: red solid 1px; */
   background-color: hsla(0, 0%, 100%, 0.5);
-  border: 1px solid hsla(0, 0%, 0%, 0.05);
+  /* border: 1px solid hsla(0, 0%, 0%, 0.05); */
+  box-shadow: 0px 2px 2px hsla(0, 0%, 0%, 0.1);
+  padding: 12px 8px;
+  border-radius: 8px;
 }
 
 .footer a {
   color: hsla(0, 0%, 0%, 0.3);
-  padding: 4px 8px;
-  margin: 0px 2px;
+  padding: 8px 8px;
+  /* margin: 0px 2px; */
   user-select: none;
+  justify-content: center;
+  align-items: center;
+  /* outline: red solid 1px; */
+  border-radius: 4px;
 }
 
 .footer a:hover {
   /* color: hsla(0, 0%, 0%, 0.5); */
-  text-decoration: underline;
-  /* background-color: rgba(0, 0, 0, 0.04); */
+  /* text-decoration: underline; */
+  background-color: rgba(0, 0, 0, 0.04);
   /* border-radius: 4px; */
   /* transition: all 0ms ease-in-out; */
 }
@@ -190,6 +201,7 @@ i {
 .footer span {
   color: hsla(0, 0%, 0%, 0.1);
   font-size: 12px;
+  padding-bottom: 6px;
   user-select: none;
 }
 
@@ -246,6 +258,12 @@ body {
 .card-bio {
   animation: pushUp ease 800ms;
   animation-iteration-count: 1;
+}
+
+.footer {
+  animation: fadeInAnimation ease 1200ms;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
 }
 
 h1 {
@@ -363,6 +381,10 @@ h2 {
 
   .details {
     /* margin-bottom: 40px; */
+  }
+
+  .footer {
+    padding: 10px 0 60px 0;
   }
 }
 
