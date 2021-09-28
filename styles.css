@@ -111,10 +111,11 @@ h3 {
   background-color: #c6deeb;
   transform: translateX(40px);
   box-shadow: 0px 20px 40px hsla(207, 46%, 27%, 0.2);
+  will-change: transform;
 }
 
 .card-picture:hover {
-  transform: translateX(30px);
+  transform: translateX(20px);
 }
 
 .card-bio {
@@ -128,7 +129,7 @@ h3 {
 }
 
 .card-bio:hover {
-  box-shadow: 0px 20px 40px hsla(0, 0%, 0%, 0.15);
+  box-shadow: 0px 20px 40px hsla(0, 0%, 0%, 0.2);
 }
 
 .btn-light {
