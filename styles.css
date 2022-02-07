@@ -529,6 +529,10 @@ body {
   .footer {
     padding: 16px 128px;
     margin: 0;
+    /* width: 100%; */
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
     /* margin-bottom: 80px; */
     height: auto;
     margin-top: auto;
