@@ -4,6 +4,7 @@ function removeMask() {
 }
 
 function showProjects() {
+  $(window).scrollTop(0);
   $(".projects").addClass("active");
   $(".project-card").addClass("adjust-card");
 }
