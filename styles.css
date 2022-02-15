@@ -67,7 +67,8 @@ body {
   background-image: url("img/Christian-Roy-Seattle-WA.jpg");
   background-size: cover;
   background-position: center;
-  transition: filter 250ms ease-in-out;
+  transition: opacity 250ms ease-in-out;
+  opacity: 0.95;
 
   width: 630px;
   height: 520px;
@@ -83,7 +84,8 @@ body {
 }
 
 .image:hover {
-  filter: brightness(1.1);
+  /* filter: brightness(1.05); */
+  opacity: 1;
 }
 
 .card {
@@ -225,7 +227,7 @@ body {
   display: flex;
   transition: all 250ms ease-in-out;
   /* align-items: center; */
-  padding: 12px 22px 12px 12px;
+  /* padding: 12px 22px 12px 12px; */
   margin: 16px;
   max-width: 350px;
   width: 300px;
@@ -247,37 +249,64 @@ body {
 
 .project-picture {
   display: flex;
-  width: 100px;
-  max-width: 100px;
+  /* margin: 12px 22px 12px 12px; */
+  padding: 16px;
+  width: 76px;
+  max-width: 76px;
+  align-items: center;
+  justify-content: center;
+  /* background-color: red; */
+  /* width: 76px; */
+  /* height: 76px; */
+  border-radius: 4px;
+  /* margin-right: 12px; */
+  /* background-color: var(--color-bg); */
+  background-color: white;
+  /* outline: 2px solid var(--color-bg); */
+}
+
+.project-picture .icon-holder {
+  /* position: relative; */
+  padding: 0px;
+  width: 54px;
+  height: 54px;
+  /* background-color: white; */
+  border-radius: 4px;
+  /* box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); */
+  /* box-shadow: 0px 6.7px 5.3px rgba(0, 0, 0, 0.028),
+    0px 22.3px 17.9px rgba(0, 0, 0, 0.042), 0px 100px 80px rgba(0, 0, 0, 0.07); */
+  /* outline: 1px solid rgba(0, 0, 0, 0.05); */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  outline: solid 2px rgba(0, 0, 0, 0.05);
+  /* border-radius: 50px; */
 }
 
 .project-picture i {
-  /* outline: solid 1px red; */
   margin: auto;
-  font-size: 28px;
+  font-size: 24px;
+  /* width: 20px; */
 }
 
 .adjust-card {
   transform: translateY(0px);
 }
 
+.project-details {
+  margin: 16px 16px 12px 0px;
+}
+
 .project-card h2 {
   font-size: 14px;
   margin-bottom: 8px;
-  margin-top: 8px;
+  /* margin-top: 8px; */
 }
 
 .project-card h3 {
   font-size: 12px;
   opacity: 0.7;
-}
-
-.project-picture {
-  width: 76px;
-  height: 76px;
-  border-radius: 4px;
-  margin-right: 12px;
-  background-color: var(--color-bg);
 }
 
 /* --------------- FOOTER --------------- */
@@ -387,7 +416,7 @@ body {
 }
 
 .image {
-  animation: SlideDown ease 1000ms;
+  animation: SlideDown-Image ease 1000ms;
   animation-iteration-count: 1;
 }
 
@@ -469,6 +498,16 @@ body {
   100% {
     transform: translateY(0px);
     opacity: 1;
+  }
+}
+
+@keyframes SlideDown-Image {
+  0% {
+    transform: translateY(-32px);
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 0.95;
   }
 }
 
