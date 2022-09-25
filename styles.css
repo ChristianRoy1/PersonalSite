@@ -189,6 +189,11 @@ p {
   transform: translateX(-24px) scale(1.1);
 }
 
+.card-main-content {
+  text-align: justify;
+  line-height: 1.4;
+}
+
 /* SECTION: Card Social */
 /* -------------------- */
 
@@ -379,6 +384,7 @@ button:active {
   .card {
     width: 80%;
     max-width: 450px;
+    margin-top: 20px;
   }
 
   .card-main {
@@ -426,6 +432,7 @@ button:active {
 
   .card-main-content p {
     max-width: 70%;
+    line-height: 1.6;
   }
 
   .card-main:hover p {
