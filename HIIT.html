@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HIIT Workout Generator</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <style>
+    @keyframes pop-scale {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+      100% { transform: scale(1); }
+    }
+    .pop-scale {
+      animation: pop-scale 0.2s ease;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script>
+    const { useState } = React;
+
+    const exercises = {
+      lowerBody: ["Squat Jumps", "Lunges", "Deadlifts", "Step-ups", "Glute Bridges"],
+      upperPush: ["Push-ups", "Shoulder Presses", "Dips", "Thrusters"],
+      upperPull: ["Rows", "Pull-ups", "Renegade Rows"],
+      core: ["Planks", "Russian Twists", "Mountain Climbers", "V-ups", "Leg Raises"],
+      cardio: ["High Knees", "Jumping Jacks", "Skaters", "Kettlebell Swings", "Burpees"]
+    };
+
+    const presetReps = {
+      "Squat Jumps": "15 reps",
+      "Lunges": "12 reps",
+      "Deadlifts": "12 reps",
+      "Step-ups": "15 reps",
+      "Glute Bridges": "20 reps",
+      "Push-ups": "15 reps",
+      "Shoulder Presses": "12 reps",
+      "Dips": "12 reps",
+      "Thrusters": "15 reps",
+      "Rows": "15 reps",
+      "Pull-ups": "10 reps",
+      "Renegade Rows": "12 reps",
+      "Planks": "30 sec",
+      "Russian Twists": "30 sec",
+      "Mountain Climbers": "30 sec",
+      "V-ups": "20 reps",
+      "Leg Raises": "20 reps",
+      "High Knees": "40 sec",
+      "Jumping Jacks": "40 sec",
+      "Skaters": "40 sec",
+      "Kettlebell Swings": "40 sec",
+      "Burpees": "40 sec"
+    };
+
+    function getRepsForExercise(exercise) {
+      return presetReps[exercise] || "15 reps";
+    }
+
+    function getRandomExercisesByCategory(categories, count, exclude = []) {
+      const selected = [];
+      const available = categories.map(cat => exercises[cat].filter(ex => !exclude.includes(ex)));
+
+      while (selected.length < count && available.flat().length >= count) {
+        for (let i = 0; i < categories.length && selected.length < count; i++) {
+          const catExercises = available[i];
+          if (catExercises.length > 0) {
+            const index = Math.floor(Math.random() * catExercises.length);
+            const moveName = catExercises.splice(index, 1)[0];
+            selected.push({
+              name: moveName,
+              reps: getRepsForExercise(moveName),
+              isPopping: false
+            });
+          }
+        }
+      }
+      return selected;
+    }
+
+    function getAllUsedMoves(c1, c2) {
+      return [...c1, ...c2].map(move => move.name);
+    }
+
+    function App() {
+      const [circuit1, setCircuit1] = useState([]);
+      const [circuit2, setCircuit2] = useState([]);
+      const [isPopping, setIsPopping] = useState(false);
+      const [hasGenerated, setHasGenerated] = useState(false);
+
+      const generateWorkout = () => {
+        setIsPopping(true);
+
+        const allCategories = Object.keys(exercises);
+        const firstSet = getRandomExercisesByCategory(allCategories, 4);
+
+        const remainingExercises = {};
+        for (const cat of allCategories) {
+          remainingExercises[cat] = exercises[cat].filter(ex => !firstSet.map(m => m.name).includes(ex));
+        }
+
+        const secondSet = getRandomExercisesByCategory(Object.keys(remainingExercises), 4);
+        setCircuit1(firstSet);
+        setCircuit2(secondSet);
+
+        setHasGenerated(true);
+
+        setTimeout(() => {
+          setIsPopping(false);
+        }, 200);
+      };
+
+      const regenerateMove = (circuitNum, index) => {
+        const allCategories = Object.keys(exercises);
+        const usedMoves = getAllUsedMoves(circuit1, circuit2);
+
+        const available = allCategories
+          .map(cat => exercises[cat].filter(ex => !usedMoves.includes(ex)))
+          .flat();
+
+        if (available.length === 0) return;
+
+        const replacement = available[Math.floor(Math.random() * available.length)];
+
+        const replacementMove = {
+          name: replacement,
+          reps: getRepsForExercise(replacement),
+          isPopping: true
+        };
+
+        if (circuitNum === 1) {
+          const newCircuit = [...circuit1];
+          newCircuit[index] = replacementMove;
+          setCircuit1(newCircuit);
+
+          // Remove pop after animation duration
+          setTimeout(() => {
+            const clearedCircuit = [...newCircuit];
+            clearedCircuit[index].isPopping = false;
+            setCircuit1(clearedCircuit);
+          }, 200);
+        } else {
+          const newCircuit = [...circuit2];
+          newCircuit[index] = replacementMove;
+          setCircuit2(newCircuit);
+
+          setTimeout(() => {
+            const clearedCircuit = [...newCircuit];
+            clearedCircuit[index].isPopping = false;
+            setCircuit2(clearedCircuit);
+          }, 200);
+        }
+      };
+
+      return React.createElement(
+        "div",
+        {
+          className: `min-h-screen text-gray-900 flex flex-col items-center justify-center p-6 max-w-xl mx-auto transform ${isPopping ? "pop-scale" : ""}`
+        },
+        React.createElement("h1", { className: "text-3xl font-extrabold mb-6 tracking-tight" }, "HIIT Workout Generator"),
+        React.createElement(
+          "p",
+          { className: "text-md mb-6 text-center text-gray-700 max-w-md leading-relaxed" },
+          "Generate two 4-move circuits targeting different muscle groups with no repeats."
+        ),
+        React.createElement(
+          "div",
+          { className: "flex gap-4 mb-8" },
+          React.createElement(
+            "button",
+            {
+              className: "bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300",
+              onClick: generateWorkout
+            },
+            "Generate Circuits"
+          )
+        ),
+        React.createElement(
+          "div",
+          { className: "grid gap-6 w-full" },
+          hasGenerated &&
+            React.createElement(
+              React.Fragment,
+              null,
+              React.createElement(
+                "div",
+                { className: "pb-4" },
+                React.createElement("h2", { className: "text-xl font-semibold mb-3 text-gray-800" }, "Circuit 1"),
+                circuit1.map((move, index) =>
+                  React.createElement(
+                    "div",
+                    {
+                      key: "c1-" + index,
+                      className: `rounded-lg bg-gray-50 p-3 flex items-center justify-between mb-3 hover:bg-gray-100 transition-colors duration-150 ${move.isPopping ? "pop-scale" : ""}`
+                    },
+                    React.createElement(
+                      "div",
+                      { className: "flex items-center space-x-3" },
+                      React.createElement("span", { className: "text-sm text-gray-500 font-mono" }, move.reps),
+                      React.createElement("span", { className: "text-lg font-medium text-gray-900" }, move.name)
+                    ),
+                    React.createElement(
+                      "button",
+                      {
+                        className: "text-blue-500 hover:text-blue-700 transition-colors duration-200 cursor-pointer text-3xl p-1",
+                        onClick: () => regenerateMove(1, index),
+                        "aria-label": `Regenerate ${move.name}`
+                      },
+                      "↻"
+                    )
+                  )
+                )
+              ),
+              React.createElement(
+                "div",
+                { className: "pt-6" },
+                React.createElement("h2", { className: "text-xl font-semibold mb-3 text-gray-800" }, "Circuit 2"),
+                circuit2.map((move, index) =>
+                  React.createElement(
+                    "div",
+                    {
+                      key: "c2-" + index,
+                      className: `rounded-lg bg-gray-50 p-3 flex items-center justify-between mb-3 hover:bg-gray-100 transition-colors duration-150 ${move.isPopping ? "pop-scale" : ""}`
+                    },
+                    React.createElement(
+                      "div",
+                      { className: "flex items-center space-x-3" },
+                      React.createElement("span", { className: "text-sm text-gray-500 font-mono" }, move.reps),
+                      React.createElement("span", { className: "text-lg font-medium text-gray-900" }, move.name)
+                    ),
+                    React.createElement(
+                      "button",
+                      {
+                        className: "text-blue-500 hover:text-blue-700 transition-colors duration-200 cursor-pointer text-3xl p-1",
+                        onClick: () => regenerateMove(2, index),
+                        "aria-label": `Regenerate ${move.name}`
+                      },
+                      "↻"
+                    )
+                  )
+                )
+              )
+            )
+        )
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(React.createElement(App));
+  </script>
+</body>
+</html>
