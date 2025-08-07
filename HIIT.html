@@ -137,7 +137,6 @@
           newCircuit[index] = replacementMove;
           setCircuit1(newCircuit);
 
-          // Remove pop after animation duration
           setTimeout(() => {
             const clearedCircuit = [...newCircuit];
             clearedCircuit[index].isPopping = false;
@@ -161,12 +160,15 @@
         {
           className: `min-h-screen text-gray-900 flex flex-col items-center justify-center p-6 max-w-xl mx-auto transform ${isPopping ? "pop-scale" : ""}`
         },
-        React.createElement("h1", { className: "text-3xl font-extrabold mb-6 tracking-tight" }, "HIIT Workout Generator"),
-        React.createElement(
-          "p",
-          { className: "text-md mb-6 text-center text-gray-700 max-w-md leading-relaxed" },
-          "Generate two 4-move circuits targeting different muscle groups with no repeats."
-        ),
+        !hasGenerated &&
+          React.createElement(React.Fragment, null,
+            React.createElement("h1", { className: "text-3xl font-extrabold mb-6 tracking-tight" }, "HIIT Workout Generator"),
+            React.createElement(
+              "p",
+              { className: "text-md mb-6 text-center text-gray-700 max-w-md leading-relaxed" },
+              "Generate two 4-move circuits targeting different muscle groups with no repeats."
+            )
+          ),
         React.createElement(
           "div",
           { className: "flex gap-4 mb-8" },
@@ -188,7 +190,7 @@
               null,
               React.createElement(
                 "div",
-                { className: "pb-4" },
+                { className: "pb-2" },  // reduced padding bottom for closer spacing
                 React.createElement("h2", { className: "text-xl font-semibold mb-3 text-gray-800" }, "Circuit 1"),
                 circuit1.map((move, index) =>
                   React.createElement(
@@ -200,13 +202,13 @@
                     React.createElement(
                       "div",
                       { className: "flex items-center space-x-3" },
-                      React.createElement("span", { className: "text-sm text-gray-500 font-mono" }, move.reps),
+                      React.createElement("span", { className: "text-xs text-gray-500 font-mono" }, move.reps),
                       React.createElement("span", { className: "text-lg font-medium text-gray-900" }, move.name)
                     ),
                     React.createElement(
                       "button",
                       {
-                        className: "text-blue-500 hover:text-blue-700 transition-colors duration-200 cursor-pointer text-3xl p-1",
+                        className: "text-blue-500 hover:text-blue-700 transition-colors duration-150 cursor-pointer text-3xl p-1",
                         onClick: () => regenerateMove(1, index),
                         "aria-label": `Regenerate ${move.name}`
                       },
@@ -217,7 +219,7 @@
               ),
               React.createElement(
                 "div",
-                { className: "pt-6" },
+                { className: "pt-3" }, // reduced padding top to bring circuits closer
                 React.createElement("h2", { className: "text-xl font-semibold mb-3 text-gray-800" }, "Circuit 2"),
                 circuit2.map((move, index) =>
                   React.createElement(
@@ -229,13 +231,13 @@
                     React.createElement(
                       "div",
                       { className: "flex items-center space-x-3" },
-                      React.createElement("span", { className: "text-sm text-gray-500 font-mono" }, move.reps),
+                      React.createElement("span", { className: "text-xs text-gray-500 font-mono" }, move.reps),
                       React.createElement("span", { className: "text-lg font-medium text-gray-900" }, move.name)
                     ),
                     React.createElement(
                       "button",
                       {
-                        className: "text-blue-500 hover:text-blue-700 transition-colors duration-200 cursor-pointer text-3xl p-1",
+                        className: "text-blue-500 hover:text-blue-700 transition-colors duration-150 cursor-pointer text-3xl p-1",
                         onClick: () => regenerateMove(2, index),
                         "aria-label": `Regenerate ${move.name}`
                       },
